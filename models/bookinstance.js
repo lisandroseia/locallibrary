@@ -9,7 +9,10 @@ const BookInstanceSchema = new Schema({
     due_back: { type: Date, default: Date.now}
 })
 
-BookInstanceSchema.virtual("url").get(() => {
+BookInstanceSchema.set("toObject", {virtuals: true})
+BookInstanceSchema.set("toJson", {virtuals: true})
+
+BookInstanceSchema.virtual("url").get(function () {
     return `/catalog/bookinstance/${this.id}`
 })
 

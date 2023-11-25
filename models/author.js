@@ -9,7 +9,11 @@ const AuthorSchema = new Schema({
     date_of_death: { type: Date },
 })
 
-AuthorSchema.virtual("name").get( () => {
+AuthorSchema.set("toObject", {virtuals: true})
+AuthorSchema.set("toJson", {virtuals: true})
+
+
+AuthorSchema.virtual("name").get(function () {
     let fullname = ""
     if (this.first_name && this.family_name){
         fullname = `${this.family_name}, ${this.first_name}`
@@ -18,7 +22,7 @@ AuthorSchema.virtual("name").get( () => {
     return fullname
 } )
 
-AuthorSchema.virtual("url").get( () => {
+AuthorSchema.virtual("url").get( function () {
     return `/catalog/author/${this.id}`
 } )
 
