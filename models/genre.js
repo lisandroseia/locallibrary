@@ -10,7 +10,7 @@ GenreSchema.set("toObject", {virtuals: true})
 GenreSchema.set("toJson", {virtuals: true})
 
 GenreSchema.virtual("url").get(function () {
-    return `/catalog/genres/${this.id}`
+    return `/catalog/genre/${this.id}`
 })
 
 module.exports = mongoose.model("genre", GenreSchema)
